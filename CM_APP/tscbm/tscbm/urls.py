@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from promomodels.views import qr_generator, redeem_code
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('qr_code/<str:code>/pic.png', qr_generator),
+    path('redeem/in-store/<str:code>', redeem_code)
 ]

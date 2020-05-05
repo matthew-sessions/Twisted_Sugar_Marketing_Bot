@@ -16,7 +16,7 @@ class Orders(models.Model):
     psid = models.BigIntegerField()
     order_amount = models.FloatField()
     promo_id = models.CharField(max_length=50)
-    date_time = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def update(self):
         data = DoorPromo.objects.get(psid=self.psid)
