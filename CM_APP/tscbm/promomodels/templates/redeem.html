@@ -32,7 +32,8 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" method="POST">
+				{% csrf_token %}
 				<span class="contact100-form-title">
 					Voucher Valid
 				</span>
@@ -43,14 +44,14 @@
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<i class="fa fa-dollar"></i>
 					<span class="label-input100">Order Amount</span>
-					<input class="input100" type="number" step="any" name="name" placeholder="Enter total order amount">
+					<input class="input100" type="number" step="any" name="amount" placeholder="Enter total order amount">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<i class="fa fa-lock"></i>
 					<span class="label-input100">Pin</span>
-					<input class="input100" type="number" name="email" step="any" placeholder="Enter a valid pin number">
+					<input class="input100" type="number" name="pin" step="any" placeholder="Enter a valid pin number">
 					<span class="focus-input100"></span>
 				</div>
 

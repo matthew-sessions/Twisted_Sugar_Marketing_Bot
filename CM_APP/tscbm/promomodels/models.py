@@ -4,7 +4,6 @@ import uuid
 # Create your models here.
 class DoorPromo(models.Model):
     psid = models.BigIntegerField(primary_key = True)
-    qr_image_code = models.CharField(max_length=120)
     status = models.BooleanField(default=False)
     source = models.CharField(max_length=120)
     promo_id = models.CharField(max_length=50)
