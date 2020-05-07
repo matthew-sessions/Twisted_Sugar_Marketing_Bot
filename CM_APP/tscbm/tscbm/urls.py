@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from promomodels.views import qr_generator, redeem_code, test, optin, clear_db
+from promomodels.views import qr_generator, redeem_code, test, optin, clear_db, report, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,8 @@ urlpatterns = [
     path('redeem/in-store/<str:code>', redeem_code),
     path('send/<str:id>', test), 
     path('optin/<str:code>', optin),
+    path('report/', report),
+    path('', home),
 
 
     path('delete', clear_db)

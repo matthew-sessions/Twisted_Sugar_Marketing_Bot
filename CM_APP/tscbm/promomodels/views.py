@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
+from django.db.models import Avg, Count, Sum, Q
 
 
 import qrcode
 import io
 from decouple import config
 from .models import DoorPromo, Orders
-from .maps import optin_map, send_confirmation
+from .maps import optin_map, send_confirmation, report_map
 
 # Create your views here.
 
@@ -93,6 +94,19 @@ def test(request, id):
     }
     return JsonResponse(data)
     
+
+def report(request):
+    total_users = DoorPromo.objects.all().aggregate(Count('psid'))
+    orders = Orders.objects.filter(promo_id='instore1')
+    ordercount = orders.count()
+    ordersum = orders.aggregate(Sum('order_amount'))
+    orderavg = orders.aggregate(Avg('order_amount'))
+    data = report_map(total_users, ordercount, ordersum, orderavg)
+    return JsonResponse(data)
+
+def home(request):
+    return JsonResponse({'status':'Done'})
+
 
 def clear_db(request):
     b = DoorPromo.objects.all().delete()
